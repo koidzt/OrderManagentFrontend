@@ -76,7 +76,7 @@ function SaleOrderList() {
     <div className="saleOrderList">
       <Row style={{ width: '100%' }}>
         <Col style={{ display: 'flex', justifyContent: 'flex-start', padding: '5px 0 0 5px' }}>
-          <Button type="primary" href="">
+          <Button type="primary" href="/addSaleOrder">
             Add Sale Order
           </Button>
         </Col>

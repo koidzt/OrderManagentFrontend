@@ -54,7 +54,13 @@
   align-items: center;
 }
 
-#components-layout-demo-side .logo {
+#components-layout-demo-side {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.logo {
   height: 32px;
   margin: 16px;
   background: rgba(255, 255, 255, 0.3);
