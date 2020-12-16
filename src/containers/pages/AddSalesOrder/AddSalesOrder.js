@@ -37,9 +37,14 @@ const onFinish = (values) => {
   console.log(values);
 };
 
-function AddSaleOrder() {
+function AddSalesOrder() {
   return (
-    <div className="addSaleOrder">
+    <div className="addSalesOrder">
+      <Row style={{ width: '100%' }}>
+        <Col xs={24} style={{ display: 'flex', justifyContent: 'flex-start', padding: '5px 0 0 5px' }}>
+          <h1>New Sales Order</h1>
+        </Col>
+      </Row>{' '}
       <Form name="time_related_controls" {...formItemLayout} onFinish={onFinish}>
         <Row style={{ display: 'flex', justifyContent: 'space-between' }}>
           <Col xs={24} md={11}>
@@ -83,4 +88,4 @@ function AddSaleOrder() {
   );
 }
 
-export default AddSaleOrder;
+export default AddSalesOrder;

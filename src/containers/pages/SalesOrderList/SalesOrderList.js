@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Button, Row, Col } from 'antd';
 
-function SaleOrderList() {
+function SalesOrderList() {
   const columns = [
     {
       title: 'Sale Order',
@@ -75,9 +75,14 @@ function SaleOrderList() {
   return (
     <div className="saleOrderList">
       <Row style={{ width: '100%' }}>
+        <Col xs={24} style={{ display: 'flex', justifyContent: 'flex-start', padding: '5px 0 0 5px' }}>
+          <h1>Sales Order List</h1>
+        </Col>
+      </Row>
+      <Row style={{ width: '100%' }}>
         <Col style={{ display: 'flex', justifyContent: 'flex-start', padding: '5px 0 0 5px' }}>
-          <Button type="primary" href="/addSaleOrder">
-            Add Sale Order
+          <Button type="primary" href="/addSalesOrder">
+            Add Sales Order
           </Button>
         </Col>
       </Row>
@@ -95,4 +100,4 @@ function SaleOrderList() {
   );
 }
 
-export default SaleOrderList;
+export default SalesOrderList;
