@@ -12,30 +12,39 @@ function SiderMenu() {
     <Sider collapsible collapsed={state} onCollapse={setState}>
       <div className="logo" />
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-        <Menu.Item key="1" icon={<DesktopOutlined />}>
-          Option 1
-        </Menu.Item>
         <SubMenu key="sub1" icon={<UserOutlined />} title="User">
+          <Menu.Item key="1">
+            <span>Change Password</span>
+            <Link to="/changePassword" />
+          </Menu.Item>
+        </SubMenu>
+        <SubMenu key="sub2" icon={<UnorderedListOutlined />} title="Sales Order">
           <Menu.Item key="2">
-            <span>Sale Order List</span>
-            <Link to="/saleOrderList" />
+            <span>New Sales Order</span>
+            <Link to="/addSalesOrder" />
           </Menu.Item>
           <Menu.Item key="3">
-            <span>New Sale Order</span>
-            <Link to="/AddSaleOrder" />
+            <span>Sales Order List</span>
+            <Link to="/salesOrderList" />
           </Menu.Item>
-          <Menu.Item key="4">
+          {/* <Menu.Item key="4">
             <span>Sales Report</span>
             <Link to="/salesReport" />
-          </Menu.Item>
-          <Menu.Item key="5">Alex</Menu.Item>
+          </Menu.Item> */}
         </SubMenu>
-        <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-          <Menu.Item key="6">Team 1</Menu.Item>
-          <Menu.Item key="8">Team 2</Menu.Item>
-        </SubMenu>
-        <Menu.Item key="9" icon={<LogoutOutlined />}>
-          Log Out
+        <Menu.Item key="5" icon={<DesktopOutlined />}>
+          Option 1
+        </Menu.Item>
+        <Menu.Item
+          key="6"
+          icon={<LogoutOutlined />}
+          // onClick={() => {
+          //   LocalStorage.removeToken();
+          //   props.setRole('GUEST');
+          //   history.push('/');
+          // }}
+        >
+          <span>Log Out</span>
         </Menu.Item>
       </Menu>
     </Sider>

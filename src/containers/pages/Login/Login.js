@@ -1,10 +1,29 @@
 import React from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, notification } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import axios from '../../../config/axios';
+import LocalStorageService from '../../../services/LocalStorageService';
 
-function Login() {
+function Login(props) {
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+    axios
+      .post('/user/login', {
+        email: values.email,
+        password: values.password,
+      })
+      .then((res) => {
+        notification.success({
+          description: 'Login success.',
+        });
+        LocalStorageService.setToken(res.data.token);
+        props.setRole('USER');
+      })
+      .catch((err) => {
+        console.log(err);
+        notification.error({
+          description: 'Login failed.',
+        });
+      });
   };
 
   return (
@@ -12,9 +31,6 @@ function Login() {
       <Form
         name="normal_login"
         className="login-form"
-        initialValues={{
-          remember: true,
-        }}
         onFinish={onFinish}
         style={{
           padding: '3em',
@@ -45,16 +61,16 @@ function Login() {
             },
           ]}
         >
-          <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password" />
+          <Input.Password prefix={<LockOutlined className="site-form-item-icon" />} placeholder="Password" />
         </Form.Item>
         <Form.Item>
           <Form.Item name="remember" valuePropName="checked" noStyle>
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
 
-          <a className="login-form-forgot" href="">
+          {/* <a className="login-form-forgot" href="">
             Forgot password
-          </a>
+          </a> */}
         </Form.Item>
 
         <Form.Item>

@@ -1,30 +1,33 @@
 import './App.css';
 import { useState } from 'react';
 import Login from './containers/pages/Login/Login';
-import SaleOrderList from './containers/pages/SaleOrderList/SaleOrderList';
+import SalesOrderList from './containers/pages/SalesOrderList/SalesOrderList';
 import { Layout } from 'antd';
 import MainLayout from './components/MainLayout/MainLayout';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import AddSaleOrder from './containers/pages/AddSaleOrder/AddSaleOrder';
+import AddSalesOrder from './containers/pages/AddSalesOrder/AddSalesOrder';
 import SalesReport from './containers/pages/SalesReport/SalesReport';
+import ChangePassword from './containers/pages/ChangePassword/ChangePassword';
+import LocalStorageService from './services/LocalStorageService';
 
 const { Content } = Layout;
 
 function App() {
-  const [role, setRole] = useState('guest');
+  const [role, setRole] = useState(LocalStorageService.getRole());
 
   return (
     <>
       <BrowserRouter>
         <Switch>
-          {role === 'guest' && <Login />}
-          {role === 'user' && (
+          {role === 'GUEST' && <Login />}
+          {role === 'USER' && (
             <MainLayout>
               <Content style={{ margin: '16px' }}>
                 <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-                  <Route exact path="/saleOrderList" component={SaleOrderList} />
-                  <Route exact path="/addSaleOrder" component={AddSaleOrder} />
-                  <Route exact path="/salesReport" component={SalesReport} />
+                  <Route exact path="/changePassword" component={ChangePassword} />
+                  <Route exact path="/salesOrderList" component={SalesOrderList} />
+                  <Route exact path="/addSalesOrder" component={AddSalesOrder} />
+                  {/* <Route exact path="/salesReport" component={SalesReport} /> */}
                 </div>
               </Content>
             </MainLayout>
