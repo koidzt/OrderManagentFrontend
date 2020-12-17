@@ -1,6 +1,8 @@
 import { Col, Row, Form, Input, Button, notification } from 'antd';
 import axios from 'axios';
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import LocalStorageService from '../../../services/LocalStorageService';
 
 const formItemLayout = {
   labelCol: {
@@ -20,7 +22,9 @@ const tailFormItemLayout = {
   },
 };
 
-function ChangePassword() {
+function ChangePassword(props) {
+  const history = useHistory();
+
   const onFinish = (values) => {
     axios
       .put('/user/changePassword', {
@@ -32,7 +36,9 @@ function ChangePassword() {
         notification.success({
           description: 'Password has been changed.',
         });
-        // LocalStorageService.setToken(res.data.token);
+        LocalStorageService.removeToken();
+        props.setRole('GUEST');
+        history.push('/');
       })
       .catch((err) => {
         console.log(err);

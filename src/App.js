@@ -24,7 +24,9 @@ function App() {
             <MainLayout setRole={setRole}>
               <Content style={{ margin: '16px' }}>
                 <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-                  <Route exact path="/changePassword" component={ChangePassword} />
+                  <Route exact path="/changePassword">
+                    <ChangePassword setRole={setRole} />
+                  </Route>
                   <Route exact path="/salesOrderList" component={SalesOrderList} />
                   <Route exact path="/addSalesOrder" component={AddSalesOrder} />
                   {/* <Route exact path="/salesReport" component={SalesReport} /> */}
