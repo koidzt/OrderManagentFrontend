@@ -19,9 +19,9 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
-          {role === 'GUEST' && <Login />}
+          {role === 'GUEST' && <Login setRole={setRole} />}
           {role === 'USER' && (
-            <MainLayout>
+            <MainLayout setRole={setRole}>
               <Content style={{ margin: '16px' }}>
                 <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                   <Route exact path="/changePassword" component={ChangePassword} />
