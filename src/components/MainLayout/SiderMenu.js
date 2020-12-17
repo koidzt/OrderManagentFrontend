@@ -8,9 +8,9 @@ const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 function SiderMenu(props) {
-  const [state, setState] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
   return (
-    <Sider collapsible collapsed={state} onCollapse={setState}>
+    <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
       <div className="logo" />
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
         <SubMenu key="sub1" icon={<UserOutlined />} title="User">
