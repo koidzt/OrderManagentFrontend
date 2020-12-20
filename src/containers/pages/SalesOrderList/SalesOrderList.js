@@ -1,7 +1,14 @@
 import React from 'react';
 import { Table, Button, Row, Col } from 'antd';
+import { useHistory } from 'react-router-dom';
 
 function SalesOrderList() {
+  const history = useHistory();
+
+  const onRedirect = () => {
+    history.push('/addSalesOrder');
+  };
+
   const columns = [
     {
       title: 'Sale Order',
@@ -81,7 +88,7 @@ function SalesOrderList() {
       </Row>
       <Row style={{ width: '100%' }}>
         <Col style={{ display: 'flex', justifyContent: 'flex-start', padding: '5px 0 0 5px' }}>
-          <Button type="primary" href="/addSalesOrder">
+          <Button type="primary" onClick={onRedirect}>
             Add Sales Order
           </Button>
         </Col>
