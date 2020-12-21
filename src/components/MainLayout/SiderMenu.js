@@ -8,10 +8,10 @@ const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 function SiderMenu(props) {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   return (
     <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
-      <div className="logo" />
+      {/* <div className="logo" /> */}
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
         <SubMenu key="sub1" icon={<UserOutlined />} title="User">
           <Menu.Item key="1">
@@ -33,9 +33,9 @@ function SiderMenu(props) {
             <Link to="/salesReport" />
           </Menu.Item> */}
         </SubMenu>
-        <Menu.Item key="5" icon={<DesktopOutlined />}>
+        {/* <Menu.Item key="5" icon={<DesktopOutlined />}>
           Option 1
-        </Menu.Item>
+        </Menu.Item> */}
         <Menu.Item
           key="6"
           icon={<LogoutOutlined />}

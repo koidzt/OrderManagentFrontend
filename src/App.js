@@ -22,7 +22,7 @@ function App() {
           {role === 'GUEST' && <Login setRole={setRole} />}
           {role === 'USER' && (
             <MainLayout setRole={setRole}>
-              <Content style={{ margin: '16px' }}>
+              <Content style={{ margin: '16px 16px 0px 16px' }}>
                 <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                   <Route exact path="/changePassword">
                     <ChangePassword setRole={setRole} />
