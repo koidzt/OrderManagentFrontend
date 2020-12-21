@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table, Button, Row, Col } from 'antd';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 function SalesOrderList() {
   const history = useHistory();
@@ -8,6 +9,18 @@ function SalesOrderList() {
   const onRedirect = () => {
     history.push('/addSalesOrder');
   };
+
+  const [salesOrder, setSalesOrder] = useState([]);
+
+  useEffect(() => {
+    axios.get('/salesOrder/').then((res) => {
+      const result = res.data.map((el) => ({
+        ...el,
+        name: el.Customer.name,
+      }));
+      setSalesOrder(result);
+    });
+  }, []);
 
   const columns = [
     {
@@ -27,7 +40,7 @@ function SalesOrderList() {
       },
     },
     {
-      title: 'Customer',
+      title: 'Customer Name',
       dataIndex: 'name',
       sorter: {
         compare: (a, b) => a.name - b.name,
@@ -35,43 +48,12 @@ function SalesOrderList() {
       },
     },
     {
-      title: 'Amount',
+      title: 'Amount (Ex Vat)',
       dataIndex: 'total',
       sorter: {
         compare: (a, b) => a.total - b.total,
         multiple: 1,
       },
-    },
-  ];
-
-  const data = [
-    {
-      key: '1',
-      so: 63120001,
-      date: '01-12-2020',
-      name: 'ร้านกอไก่',
-      total: 1000,
-    },
-    {
-      key: '2',
-      so: 63120002,
-      date: '02-12-2020',
-      name: 'ร้านขอไข่',
-      total: 2000,
-    },
-    {
-      key: '3',
-      so: 63120005,
-      date: '03-12-2020',
-      name: 'ร้านคอควาย',
-      total: 1500,
-    },
-    {
-      key: '4',
-      so: 63120010,
-      date: '04-12-2020',
-      name: 'ร้านฅอฅน',
-      total: 3000,
     },
   ];
 
@@ -82,24 +64,53 @@ function SalesOrderList() {
   return (
     <div className="saleOrderList">
       <Row style={{ width: '100%' }}>
-        <Col xs={24} style={{ display: 'flex', justifyContent: 'flex-start', padding: '5px 0 0 5px' }}>
+        <Col
+          xs={24}
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-start',
+            padding: '5px 0 0 5px',
+          }}
+        >
           <h1>Sales Order List</h1>
         </Col>
       </Row>
       <Row style={{ width: '100%' }}>
-        <Col style={{ display: 'flex', justifyContent: 'flex-start', padding: '5px 0 0 5px' }}>
+        <Col
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-start',
+            padding: '5px 0 0 5px',
+          }}
+        >
           <Button type="primary" onClick={onRedirect}>
             Add Sales Order
           </Button>
         </Col>
       </Row>
-      <Row style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-        <Col style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+      <Row
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          width: '100%',
+        }}
+      >
+        <Col
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            width: '100%',
+          }}
+        >
           <Table
             columns={columns}
-            dataSource={data}
+            dataSource={salesOrder}
             onChange={onChange}
-            style={{ padding: '5px', width: '100%', height: '100%' }}
+            style={{
+              padding: '5px',
+              width: '100%',
+              height: '100%',
+            }}
           />
         </Col>
       </Row>
