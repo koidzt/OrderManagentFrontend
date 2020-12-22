@@ -156,17 +156,18 @@ class ProductList extends React.Component {
   handleAdd = () => {
     const newData = {
       key: this.props.productLists.length,
-      code: 'Product Code',
-      name: 'Product Name',
-      description: 'description',
-      unit: 'unit',
-      price: '0',
-      discount: '0',
-      quantity: '1',
-      amount: '0',
-      vat: '0',
-      price_in_vat: '0',
-      amount_in_vat: '0',
+      id: null,
+      code: 'POM-XXX',
+      name: null,
+      description: null,
+      unit: null,
+      price: null,
+      // discount: 0,
+      quantity: 1,
+      amount: null,
+      // vat: null,
+      price_in_vat: null,
+      amount_in_vat: null,
     };
     this.props.setProductLists([...this.props.productLists, newData]);
   };
@@ -174,8 +175,9 @@ class ProductList extends React.Component {
     const newData = [...this.props.productLists];
     const index = newData.findIndex((item) => row.key === item.key);
     const item = newData[index];
-    const selProduct = this.props.product.find((el) => el.code === row.code);
+    const selProduct = this.props.products.find((el) => el.code === row.code);
     if (selProduct) {
+      row.id = selProduct.id;
       row.name = selProduct.name;
       row.description = selProduct.description;
       row.unit = selProduct.unit;

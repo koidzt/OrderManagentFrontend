@@ -22,29 +22,42 @@ function SalesOrderList() {
     });
   }, []);
 
+  console.log(salesOrder);
   const columns = [
     {
       title: 'Sale Order',
       dataIndex: 'so',
       sorter: {
         compare: (a, b) => a.so - b.so,
-        multiple: 3,
       },
     },
     {
       title: 'Date',
       dataIndex: 'date',
       sorter: {
-        compare: (a, b) => a.date - b.date,
-        multiple: 3,
+        compare: (a, b) => {
+          if (a.date > b.date) return 1;
+          if (a.date == b.date) return 0;
+          if (a.date < b.date) return -1;
+        },
       },
     },
     {
       title: 'Customer Name',
       dataIndex: 'name',
       sorter: {
-        compare: (a, b) => a.name - b.name,
-        multiple: 2,
+        compare: (a, b) => {
+          if (a.name > b.name) return 1;
+          if (a.name == b.name) return 0;
+          if (a.name < b.name) return -1;
+        },
+      },
+    },
+    {
+      title: 'Status SO',
+      dataIndex: 'status',
+      sorter: {
+        compare: (a, b) => a.date - b.date,
       },
     },
     {
@@ -52,7 +65,6 @@ function SalesOrderList() {
       dataIndex: 'total',
       sorter: {
         compare: (a, b) => a.total - b.total,
-        multiple: 1,
       },
     },
   ];
