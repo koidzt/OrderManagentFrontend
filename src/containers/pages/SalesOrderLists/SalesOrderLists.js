@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Button, Row, Col } from 'antd';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 function SalesOrderList() {
@@ -14,9 +14,9 @@ function SalesOrderList() {
 
   useEffect(() => {
     axios.get('/salesOrder/').then((res) => {
-      const result = res.data.map((el) => ({
-        ...el,
-        name: el.Customer.name,
+      const result = res.data.map((salesOrder) => ({
+        ...salesOrder,
+        name: salesOrder.Customer.name,
       }));
       setSalesOrder(result);
     });
@@ -27,6 +27,7 @@ function SalesOrderList() {
     {
       title: 'Sale Order',
       dataIndex: 'so',
+      render: (text) => <Link to={'/salesOrder/' + salesOrder.find((el) => el.so === text).id}>{text}</Link>,
       sorter: {
         compare: (a, b) => a.so - b.so,
       },
@@ -69,10 +70,6 @@ function SalesOrderList() {
     },
   ];
 
-  function onChange(pagination, filters, sorter, extra) {
-    console.log('params', pagination, filters, sorter, extra);
-  }
-
   return (
     <div className="saleOrderList">
       <Row style={{ width: '100%' }}>
@@ -84,7 +81,7 @@ function SalesOrderList() {
             padding: '5px 0 0 5px',
           }}
         >
-          <h1>Sales Order List</h1>
+          <h1>Sales Order Lists</h1>
         </Col>
       </Row>
       <Row style={{ width: '100%' }}>
@@ -117,7 +114,6 @@ function SalesOrderList() {
           <Table
             columns={columns}
             dataSource={salesOrder}
-            onChange={onChange}
             style={{
               padding: '5px',
               width: '100%',

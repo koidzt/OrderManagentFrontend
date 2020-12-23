@@ -3,10 +3,12 @@ import { Form, Input, Button, Checkbox, notification, Layout } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import axios from '../../../config/axios';
 import LocalStorageService from '../../../services/LocalStorageService';
+import { useHistory } from 'react-router-dom';
 
 const { Header, Footer, Content } = Layout;
 
 function Login(props) {
+  const history = useHistory();
   const onFinish = (values) => {
     axios
       .post('/user/login', {
@@ -19,6 +21,7 @@ function Login(props) {
         });
         LocalStorageService.setToken(res.data.token);
         props.setRole('USER');
+        history.push('/salesOrderLists');
       })
       .catch((err) => {
         console.log(err);

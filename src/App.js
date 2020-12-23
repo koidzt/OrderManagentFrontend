@@ -1,11 +1,12 @@
 import './App.css';
 import { useState } from 'react';
 import Login from './containers/pages/Login/Login';
-import SalesOrderList from './containers/pages/SalesOrderList/SalesOrderList';
+import SalesOrderLists from './containers/pages/SalesOrderLists/SalesOrderLists';
 import { Layout } from 'antd';
 import MainLayout from './components/MainLayout/MainLayout';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import AddSalesOrder from './containers/pages/AddSalesOrder/AddSalesOrder';
+import SalesOrder from './containers/pages/SalesOrder/SalesOrder';
 import SalesReport from './containers/pages/SalesReport/SalesReport';
 import ChangePassword from './containers/pages/ChangePassword/ChangePassword';
 import LocalStorageService from './services/LocalStorageService';
@@ -27,8 +28,9 @@ function App() {
                   <Route exact path="/changePassword">
                     <ChangePassword setRole={setRole} />
                   </Route>
-                  <Route exact path="/salesOrderList" component={SalesOrderList} />
+                  <Route exact path="/salesOrderLists" component={SalesOrderLists} />
                   <Route exact path="/addSalesOrder" component={AddSalesOrder} />
+                  <Route exact path="/salesOrder/:id" component={SalesOrder} />
                   {/* <Route exact path="/salesReport" component={SalesReport} /> */}
                 </div>
               </Content>

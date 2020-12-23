@@ -25,8 +25,8 @@ function SiderMenu(props) {
             <Link to="/addSalesOrder" />
           </Menu.Item>
           <Menu.Item key="3">
-            <span>Sales Order List</span>
-            <Link to="/salesOrderList" />
+            <span>Sales Order Lists</span>
+            <Link to="/salesOrderLists" />
           </Menu.Item>
           {/* <Menu.Item key="4">
             <span>Sales Report</span>

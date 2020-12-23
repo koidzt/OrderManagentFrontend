@@ -83,12 +83,13 @@ function AddSalesOrder() {
         credit_term: values.credit_term,
         discount: values.discount,
         vat: values.vat,
-        total: totalExVat,
+        total: total,
+        total_ex_vat: grandTotal,
         total_in_vat: totalInVat,
         productList: productLists,
       })
       .then((res) => {
-        history.push('/salesOrderList');
+        history.push(`/salesOrder/${res.data.newSalesOrder.id}`);
         notification.success({
           description: 'Sales Order created success!',
         });
@@ -137,11 +138,11 @@ function AddSalesOrder() {
     setVat(Number(e.target.value));
   };
 
-  const totalExVat = productLists.reduce((acc, product) => {
+  const total = productLists.reduce((acc, product) => {
     return acc + product.amount;
   }, 0);
 
-  const grandTotal = totalExVat * (1 - discount / 100);
+  const grandTotal = total * (1 - discount / 100);
   const totalInVat = grandTotal * (1 + vat / 100);
 
   return (
@@ -235,8 +236,8 @@ function AddSalesOrder() {
                 <h3 style={{ padding: '0.5em 0' }}>Grand Total (InVat)</h3>
               </Col>
               <Col xs={8} style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                <h3 style={{ padding: '0.5em 0' }}>{totalExVat.toFixed(2)}</h3>
-                <h3 style={{ padding: '0.5em 0' }}>{((discount / 100) * totalExVat).toFixed(2)}</h3>
+                <h3 style={{ padding: '0.5em 0' }}>{total.toFixed(2)}</h3>
+                <h3 style={{ padding: '0.5em 0' }}>{((discount / 100) * total).toFixed(2)}</h3>
                 <h3 style={{ padding: '0.5em 0' }}>{grandTotal.toFixed(2)}</h3>
                 <h3 style={{ padding: '0.5em 0' }}>{((grandTotal * vat) / 100).toFixed(2)}</h3>
                 <h3 style={{ padding: '0.5em 0' }}>{(grandTotal * (1 + vat / 100)).toFixed(2)}</h3>

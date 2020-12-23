@@ -99,13 +99,13 @@ class ProductList extends React.Component {
         dataIndex: 'unit',
       },
       {
-        title: 'Price (ExVat)',
+        title: 'Price Per Unit',
         dataIndex: 'price',
       },
-      {
-        title: 'Price (InVat)',
-        dataIndex: 'price_in_vat',
-      },
+      // {
+      //   title: 'Price (InVat)',
+      //   dataIndex: 'price_in_vat',
+      // },
       // {
       //   title: 'Discount (%)',
       //   dataIndex: 'discount',
@@ -117,7 +117,7 @@ class ProductList extends React.Component {
         editable: true,
       },
       {
-        title: 'Amount (ExVat)',
+        title: 'Amount',
         dataIndex: 'amount',
       },
       // {
@@ -125,10 +125,10 @@ class ProductList extends React.Component {
       //   dataIndex: 'vat',
       //   editable: true,
       // },
-      {
-        title: 'Amount (InVat)',
-        dataIndex: 'amount_in_vat',
-      },
+      // {
+      //   title: 'Amount (InVat)',
+      //   dataIndex: 'amount_in_vat',
+      // },
       {
         title: 'operation',
         dataIndex: 'operation',
