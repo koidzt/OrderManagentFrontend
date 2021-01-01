@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import { DesktopOutlined, LogoutOutlined, TeamOutlined, UserOutlined, UnorderedListOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import LocalStorageService from '../../services/LocalStorageService';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 function SiderMenu(props) {
+  const history = useHistory();
   const [collapsed, setCollapsed] = useState(true);
   return (
     <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
@@ -42,6 +43,7 @@ function SiderMenu(props) {
           onClick={() => {
             LocalStorageService.removeToken();
             props.setRole('GUEST');
+            history.push('/');
           }}
         >
           <span>Log Out</span>

@@ -1,3 +1,5 @@
+import jwtDecode from 'jwt-decode';
+
 const setToken = (token) => {
   localStorage.setItem('ACCESS_TOKEN', token);
 };
@@ -17,9 +19,18 @@ const getRole = () => {
   return 'GUEST';
 };
 
+const getPosition = () => {
+  if (getToken()) {
+    const payload = jwtDecode(getToken());
+    return payload.position;
+  }
+  return '';
+};
+
 export default {
   setToken,
   getToken,
   removeToken,
   getRole,
+  getPosition,
 };

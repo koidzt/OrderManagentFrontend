@@ -1,7 +1,7 @@
 import { Row, Col, Table } from 'antd';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 const columns = [
   {
@@ -64,6 +64,7 @@ const columns = [
 // ];
 
 function SalesOrder() {
+  const history = useHistory();
   const params = useParams();
   console.log(params.id);
   const [salesOrder, setSalesOrder] = useState({
@@ -74,6 +75,9 @@ function SalesOrder() {
 
   useEffect(() => {
     axios.get(`/salesOrder/${params.id}`).then((res) => {
+      if (!res.data) {
+        return history.push('/notFound');
+      }
       setSalesOrder(res.data);
     });
   }, []);

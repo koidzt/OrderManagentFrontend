@@ -10,6 +10,7 @@ import SalesOrder from './containers/pages/SalesOrder/SalesOrder';
 import SalesReport from './containers/pages/SalesReport/SalesReport';
 import ChangePassword from './containers/pages/ChangePassword/ChangePassword';
 import LocalStorageService from './services/LocalStorageService';
+import NotFound from './containers/pages/NotFound/NotFound';
 
 const { Content } = Layout;
 
@@ -31,6 +32,7 @@ function App() {
                   <Route exact path="/salesOrderLists" component={SalesOrderLists} />
                   <Route exact path="/addSalesOrder" component={AddSalesOrder} />
                   <Route exact path="/salesOrder/:id" component={SalesOrder} />
+                  <Route exact path="/notFound" component={NotFound} />
                   {/* <Route exact path="/salesReport" component={SalesReport} /> */}
                 </div>
               </Content>

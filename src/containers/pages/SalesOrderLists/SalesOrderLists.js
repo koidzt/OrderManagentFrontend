@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Table, Button, Row, Col } from 'antd';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
+import LocalStorageService from '../../../services/LocalStorageService';
 
 function SalesOrderList() {
   const history = useHistory();
@@ -13,7 +14,14 @@ function SalesOrderList() {
   const [salesOrder, setSalesOrder] = useState([]);
 
   useEffect(() => {
-    axios.get('/salesOrder/').then((res) => {
+    let position = LocalStorageService.getPosition();
+    let path = '';
+    if (position === 'Sales Representative') {
+      path = 'salesRep';
+    } else if (position === 'Sales Coordinator') {
+      path = 'salesCo';
+    }
+    axios.get(`/salesOrder/${path}`).then((res) => {
       const result = res.data.map((salesOrder) => ({
         ...salesOrder,
         name: salesOrder.Customer.name,
