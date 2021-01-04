@@ -11,6 +11,7 @@ import SalesReport from './containers/pages/SalesReport/SalesReport';
 import ChangePassword from './containers/pages/ChangePassword/ChangePassword';
 import LocalStorageService from './services/LocalStorageService';
 import NotFound from './containers/pages/NotFound/NotFound';
+import Index from './containers/pages/Index/Index';
 
 const { Content } = Layout;
 
@@ -26,6 +27,7 @@ function App() {
             <MainLayout setRole={setRole}>
               <Content style={{ margin: '16px 16px 0px 16px' }}>
                 <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+                  <Route exact path="/" component={Index} />
                   <Route exact path="/changePassword">
                     <ChangePassword setRole={setRole} />
                   </Route>

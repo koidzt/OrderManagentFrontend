@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
-import { DesktopOutlined, LogoutOutlined, TeamOutlined, UserOutlined, UnorderedListOutlined } from '@ant-design/icons';
+import { LogoutOutlined, HomeOutlined, UserOutlined, UnorderedListOutlined } from '@ant-design/icons';
 import { Link, useHistory } from 'react-router-dom';
 import LocalStorageService from '../../services/LocalStorageService';
 
@@ -14,6 +14,10 @@ function SiderMenu(props) {
     <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
       {/* <div className="logo" /> */}
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+        <Menu.Item key="4" icon={<HomeOutlined />}>
+          <span>Home</span>
+          <Link to="/" />
+        </Menu.Item>
         <SubMenu key="sub1" icon={<UserOutlined />} title="User">
           <Menu.Item key="1">
             <span>Change Password</span>
@@ -29,10 +33,6 @@ function SiderMenu(props) {
             <span>Sales Order Lists</span>
             <Link to="/salesOrderLists" />
           </Menu.Item>
-          {/* <Menu.Item key="4">
-            <span>Sales Report</span>
-            <Link to="/salesReport" />
-          </Menu.Item> */}
         </SubMenu>
         {/* <Menu.Item key="5" icon={<DesktopOutlined />}>
           Option 1
