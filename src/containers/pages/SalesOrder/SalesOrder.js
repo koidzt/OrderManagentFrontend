@@ -1,4 +1,4 @@
-import { Row, Col, Table } from 'antd';
+import { Row, Col, Table, Button, notification } from 'antd';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
@@ -98,11 +98,69 @@ function SalesOrder() {
     };
   });
 
+  const onClickCancel = () => {
+    console.log('Cancel');
+    axios.put(`/salesOrder/${params.id}`, {
+      status: 'Cancel',
+    });
+    axios
+      .get(`/salesOrder/${params.id}`)
+      .then((res) => {
+        if (!res.data) {
+          return history.push('/notFound');
+        }
+        setSalesOrder(res.data);
+      })
+      .then((res) => {
+        notification.success({
+          description: 'Sales Order updated success!',
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="SalesOrder">
       <Row style={{ width: '100%' }}>
         <Col xs={24} style={{ display: 'flex', justifyContent: 'flex-start', padding: '5px 0 0 5px' }}>
           <h1>Sales Order</h1>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: '0 1em',
+            }}
+          >
+            <span style={{ backgroundColor: '#DDDDDD', padding: '0.2em' }}>{salesOrder.status}</span>
+          </div>
+        </Col>
+      </Row>
+      <Row style={{ width: '100%' }}>
+        <Col xs={24}>
+          <ul
+            style={{
+              listStyleType: 'none',
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'flex-start',
+              padding: '0',
+              margin: '0',
+            }}
+          >
+            {/* <li style={{ paddingRight: '1em' }}>
+              <Button type="primary" style={{ width: '120px' }}>
+                Edit Order
+              </Button>
+            </li> */}
+            <li style={{ paddingRight: '1em' }}>
+              <Button type="danger" style={{ width: '120px' }} onClick={onClickCancel}>
+                Cancel Order
+              </Button>
+            </li>
+          </ul>
         </Col>
       </Row>
       <Row style={{ display: 'flex', justifyContent: 'center', padding: '5px 0 0 5px' }}>
